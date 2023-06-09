@@ -1,4 +1,4 @@
-import { without } from "lodash-es";
+import { without, mapValues } from "lodash-es";
 export interface CommonComponentProps {
   // actions
   actionType: string;
@@ -115,3 +115,14 @@ export const shapeStylePropsNames = without(
   "actionType",
   "url"
 );
+
+export const transformToComponentProps = <T extends AllComponentProps>(
+  props: T
+) => {
+  return mapValues(props, (item) => {
+    return {
+      type: (item as any).constructor as StringConstructor,
+      default: item,
+    };
+  });
+};

@@ -1,26 +1,46 @@
 <template>
   <component
     :is="'div'"
+    :src="src"
     :style="styleProps"
-    class="l-shape-component"
+    class="l-image-component"
     @click.prevent="handleClick"
   />
 </template>
-<script lang="ts" setup>
-import useComponentCommon from "@/hooks/useComponentCommon";
+<script lang="ts">
+import { defineComponent } from "vue";
+import useComponentCommon from "../../hooks/useComponentCommon";
 import {
-  ShapeComponentProps,
-  shapeDefaultProps,
-  shapeStylePropsNames,
-} from "@/defaultProps";
+  transformToComponentProps,
+  imageDefaultProps,
+  imageStylePropsNames,
+} from "../../defaultProps";
+const defaultProps = transformToComponentProps(imageDefaultProps);
 
-const props = withDefaults(
-  defineProps<ShapeComponentProps>(),
-  shapeDefaultProps
-);
-
-const { styleProps, handleClick } = useComponentCommon(
-  props,
-  shapeStylePropsNames
-);
+// array that contains style props
+export default defineComponent({
+  name: "LShape",
+  props: {
+    ...defaultProps,
+  },
+  setup(props) {
+    // 重用并且简化
+    // 抽离并且获得 styleProps
+    const { styleProps, handleClick } = useComponentCommon(
+      props,
+      imageStylePropsNames
+    );
+    return {
+      styleProps,
+      handleClick,
+    };
+  },
+});
 </script>
+
+<style scoped>
+.l-image-component {
+  max-width: 100%;
+  position: relative !important;
+}
+</style>

@@ -9,26 +9,38 @@
   </component>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent } from "vue";
 import {
-  TextComponentProps,
   textDefaultProps,
   textStylePropNames,
+  transformToComponentProps,
 } from "@/defaultProps";
 import useComponentCommon from "@/hooks/useComponentCommon";
 
-const props = withDefaults(
-  defineProps<Partial<TextComponentProps & { tag: string }>>(),
-  {
-    ...textDefaultProps,
-    tag: "div",
-  }
-);
+const defaultProps = transformToComponentProps(textDefaultProps);
 
-const { styleProps, handleClick } = useComponentCommon(
-  props,
-  textStylePropNames
-);
+export default defineComponent({
+  name: "LText",
+  props: {
+    tag: {
+      type: String,
+      default: "div",
+    },
+    ...defaultProps,
+  },
+  setup(props) {
+    const { styleProps, handleClick } = useComponentCommon(
+      props,
+      textStylePropNames
+    );
+
+    return {
+      styleProps,
+      handleClick,
+    };
+  },
+});
 </script>
 
 <style>

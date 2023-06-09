@@ -1,11 +1,29 @@
 {
   "name": "lego-components",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "private": false,
   "type": "module",
+  "main": "dist/lego-components.umd.js",
+  "module": "dist/lego-components.esm.js",
+  "types": "dist/index.d.ts",
+  "author": "almost",
+  "homepage": "https://github.com/AlmostSire/lego-components",
+  "keywords": [
+    "Component",
+    "UI",
+    "Vue3"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlmostSire/lego-components"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
+    "build": "npm run clean && npm run build:esm && npm run build:umd",
+    "build:esm": "rollup --bundleConfigAsCjs --config rollup.esm.config.js",
+    "build:umd": "rollup --bundleConfigAsCjs --config rollup.umd.config.js",
+    "clean": "rimraf ./dist",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
@@ -14,10 +32,9 @@
     "lodash-es": "^4.17.21"
   },
   "peerDependencies": {
-    "vue": "^3.2.13"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
-    "vue": "^3.2.13",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@types/jest": "^27.0.1",
@@ -39,6 +56,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "jest": "^27.0.5",
     "prettier": "^2.4.1",
+    "rimraf": "^5.0.1",
     "rollup": "^3.24.0",
     "rollup-plugin-css-only": "^4.3.0",
     "rollup-plugin-typescript2": "^0.34.1",
@@ -47,6 +65,7 @@
     "sass-loader": "^12.0.0",
     "ts-jest": "^27.0.4",
     "tslib": "^2.5.3",
-    "typescript": "~4.5.5"
+    "typescript": "~4.5.5",
+    "vue": "^3.2.13"
   }
 }

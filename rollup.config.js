@@ -13,6 +13,13 @@ const overrides = {
   //include: ["src/main.ts", "src/shims-vue.d.ts"],
 };
 
+// const overrides = {
+//   compilerOptions: { declaration: true },
+//   //exclude: ["tests/**/*.ts", "tests/**/*.tsx"],
+// };
+
+export { name, file };
+
 export default {
   input: "src/index.ts",
   output: {
@@ -27,7 +34,7 @@ export default {
     }),
     vue(),
     json(),
-    css({ output: "bundle.css" }),
+    css({ output: "index.css" }),
   ],
-  external: ["vue"],
+  external: ["vue", "lodash-es"],
 };

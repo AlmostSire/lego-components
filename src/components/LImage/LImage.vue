@@ -7,22 +7,35 @@
     @click.prevent="handleClick"
   />
 </template>
-<script lang="ts" setup>
+<script lang="ts">
+import { defineComponent } from "vue";
 import useComponentCommon from "@/hooks/useComponentCommon";
 import {
+  transformToComponentProps,
   imageDefaultProps,
   imageStylePropsNames,
-  ImageComponentProps,
 } from "@/defaultProps";
+const defaultProps = transformToComponentProps(imageDefaultProps);
 
-const props = withDefaults(defineProps<Partial<ImageComponentProps>>(), {
-  ...imageDefaultProps,
+// array that contains style props
+export default defineComponent({
+  name: "LImage",
+  props: {
+    ...defaultProps,
+  },
+  setup(props) {
+    // 重用并且简化
+    // 抽离并且获得 styleProps
+    const { styleProps, handleClick } = useComponentCommon(
+      props,
+      imageStylePropsNames
+    );
+    return {
+      styleProps,
+      handleClick,
+    };
+  },
 });
-
-const { styleProps, handleClick } = useComponentCommon(
-  props,
-  imageStylePropsNames
-);
 </script>
 
 <style scoped>
