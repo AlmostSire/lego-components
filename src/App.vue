@@ -1,21 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div>hello world</div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./components/HelloWorld.vue";
+<script lang="ts" setup>
+const fn = () => {
+  console.log(1);
+};
+fn();
 
-@Options({
-  components: {
-    HelloWorld,
-  },
-})
-export default class App extends Vue {}
+interface IProps {
+  name: string;
+}
+defineProps<IProps>();
 </script>
 
-<style lang="scss">
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
