@@ -17,15 +17,3 @@ export { LText, LImage, LShape, install };
 export default {
   install,
 };
-
-interface A {
-  name: string;
-}
-
-interface B {
-  name: string;
-}
-
-interface C {
-  name: string;
-}

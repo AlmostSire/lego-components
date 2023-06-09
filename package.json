@@ -28,7 +28,7 @@
     "clean": "rimraf ./dist",
     "test": "vue-cli-service test:unit",
     "test:watch": "vue-cli-service test:unit --watch",
-    "lint": "vue-cli-service lint --max-warnings 10",
+    "lint": "vue-cli-service lint --max-warnings 1",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
     "prepare": "husky install"
   },
