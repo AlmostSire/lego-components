@@ -3,20 +3,14 @@ import vue from "rollup-plugin-vue";
 import css from "rollup-plugin-css-only";
 import typescript from "rollup-plugin-typescript2";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import { name } from "./package.json";
+import { name } from "../package.json";
 
 const file = (type) => `dist/${name}.${type}.js`;
 
 const overrides = {
   compilerOptions: { declaration: true },
-  exclude: ["node_modules", "src/App.vue", "src/main.ts"],
-  //include: ["src/main.ts", "src/shims-vue.d.ts"],
+  exclude: ["tests/**/*.ts", "tests/**/*.tsx"],
 };
-
-// const overrides = {
-//   compilerOptions: { declaration: true },
-//   //exclude: ["tests/**/*.ts", "tests/**/*.tsx"],
-// };
 
 export { name, file };
 

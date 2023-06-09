@@ -119,10 +119,11 @@ export const shapeStylePropsNames = without(
 export const transformToComponentProps = <T extends AllComponentProps>(
   props: T
 ) => {
-  return mapValues(props, (item) => {
+  const mapProps = mapValues(props, (item) => {
     return {
       type: (item as any).constructor as StringConstructor,
       default: item,
     };
   });
+  return { ...mapProps, ...isEditingProp };
 };
