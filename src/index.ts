@@ -25,3 +25,7 @@ interface A {
 interface B {
   name: string;
 }
+
+interface C {
+  name: string;
+}
