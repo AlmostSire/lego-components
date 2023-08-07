@@ -16,11 +16,6 @@ export { name, file };
 
 export default {
   input: "src/index.ts",
-  output: {
-    file: file("esm"),
-    format: "es",
-    name,
-  },
   plugins: [
     nodeResolve(),
     typescript({

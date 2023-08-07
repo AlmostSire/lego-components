@@ -8,7 +8,7 @@ describe("LText.vue", () => {
     Object.defineProperty(window, "location", {
       writable: true,
       value: {
-        url: "",
+        href: "",
       },
     });
   });

@@ -24,6 +24,28 @@ export interface CommonComponentProps {
   top: string;
   right: string;
 }
+export interface TextComponentProps extends CommonComponentProps {
+  text: string;
+  fontSize: string;
+  fontFamily: string;
+  fontWeight: string;
+  fontStyle: string;
+  textDecoration: string;
+  lineHeight: string;
+  textAlign: string;
+  color: string;
+  backgroundColor: string;
+}
+export interface ImageComponentProps extends CommonComponentProps {
+  src: string;
+}
+export interface ShapeComponentProps extends CommonComponentProps {
+  backgroundColor: string;
+}
+export type AllComponentProps = Partial<
+  TextComponentProps & ImageComponentProps & ShapeComponentProps
+>;
+
 export const commonDefaultProps: CommonComponentProps = {
   // actions
   actionType: "",
@@ -49,27 +71,7 @@ export const commonDefaultProps: CommonComponentProps = {
   top: "0",
   right: "0",
 };
-export interface TextComponentProps extends CommonComponentProps {
-  text: string;
-  fontSize: string;
-  fontFamily: string;
-  fontWeight: string;
-  fontStyle: string;
-  textDecoration: string;
-  lineHeight: string;
-  textAlign: string;
-  color: string;
-  backgroundColor: string;
-}
-export interface ImageComponentProps extends CommonComponentProps {
-  src: string;
-}
-export interface ShapeComponentProps extends CommonComponentProps {
-  backgroundColor: string;
-}
-export type AllComponentProps = Partial<
-  TextComponentProps & ImageComponentProps & ShapeComponentProps
->;
+
 export const textDefaultProps: TextComponentProps = {
   // basic props - font styles
   text: "正文内容",
@@ -84,6 +86,7 @@ export const textDefaultProps: TextComponentProps = {
   backgroundColor: "",
   ...commonDefaultProps,
 };
+
 export const imageDefaultProps: ImageComponentProps = {
   src: "test.url",
   ...commonDefaultProps,
@@ -93,12 +96,14 @@ export const shapeDefaultProps: ShapeComponentProps = {
   backgroundColor: "",
   ...commonDefaultProps,
 };
+
 export const isEditingProp = {
   isEditing: {
     type: Boolean,
     default: false,
   },
 };
+
 export const textStylePropNames = without(
   Object.keys(textDefaultProps),
   "actionType",
