@@ -1,8 +1,8 @@
 import { App } from "vue";
-
 import LText from "./components/LText";
 import LImage from "./components/LImage";
 import LShape from "./components/LShape";
+export * from "./defaultProps";
 
 const components = [LText, LImage, LShape];
 
